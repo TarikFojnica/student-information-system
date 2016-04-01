@@ -8,7 +8,9 @@ router.get('/new/', function(req, res) {
 });
 
 router.get('/all', function(req, res) {
-	Students.getAll();
+	Students.getAll(function (results) {
+    	res.json(results);
+    });     
 });
 
 module.exports = router;

@@ -1,9 +1,8 @@
-var express = require('express');
-var router = express.Router();
 var mysql = require("mysql");
 
 // First you need to create a connection to the db
 var conn;
+var students;
 function createConnection() {
     con = mysql.createConnection({
       host: 'localhost',
@@ -43,14 +42,12 @@ exports.create = function(firstName, lastName, major) {
       createConnection();
     });
   });
-}
+};
 
-exports.getAll = function() {
+exports.getAll = function(cb) {
    con.query('SELECT * FROM Student', function(err, res){
-    if(err) throw err;
-    // console.log(res); 
-    
+      if(err) throw err;
+      console.log(res);
+      cb(res);
   });
 }
-
-module.exports = router;
