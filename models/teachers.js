@@ -21,21 +21,16 @@ con.connect(function(err){
   console.log('Connection established');
 });
 
-exports.create = function(firstName, lastName, faculty, program, phoneNumber, email, gpa, cgpa, studentId, birthday) {
-  var Student = {
+exports.create = function(firstName, lastName, phoneNumber, email, teacherId) {
+  var Teacher = {
     FirstName: firstName,
     LastName: lastName,
-    Faculty: faculty,
-    Program: program,
     PhoneNumber: phoneNumber,
     Email: email,
-    GPA: gpa,
-    CGPA: cgpa,
-    StudentId: studentId,
-    Birthday: birthday
+    TeacherId: teacherId,
   }
 
-  con.query('INSERT INTO student SET ?', Student, function(err, res){
+  con.query('INSERT INTO Teacher SET ?', Teacher, function(err, res){
     if(err) throw err;
     console.log('Last insert ID:', res.insertId); 
     console.log(res);
@@ -43,16 +38,9 @@ exports.create = function(firstName, lastName, faculty, program, phoneNumber, em
 };
 
 exports.getAll = function(cb) {
-   con.query('SELECT * FROM Student', function(err, res){
+   con.query('SELECT * FROM Teacher', function(err, res){
       if(err) throw err;
       console.log(res);
       cb(res);
-  });
-}
-
-exports.delete = function(id) {
-  con.query('DELETE FROM Student WHERE ID = ?', id ,function(err, res){
-      if(err) throw err;
-      console.log(res);
   });
 }

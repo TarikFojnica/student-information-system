@@ -1,20 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var Students = require('../models/students');
+var Students = require('../models/teachers');
 
 router.post('/new', function(req, res) {
 	// Students.create(req.query.firstName, req.query.lastName, req.query.major);
 	Students.create(
 		req.body.firstName, 
 		req.body.lastName,
-		req.body.faculty,
-		req.body.program,
 		req.body.phoneNumber,
 		req.body.email,
-		req.body.gpa,
-		req.body.cgpa,
-		req.body.studentId,
-		req.body.birthday
+		req.body.teacherId
 		);
 
 	console.log(req.body);
@@ -26,12 +21,5 @@ router.get('/all', function(req, res) {
     	res.json(results);
     });     
 });
-
-router.delete('/:id', function(req, res) {
-	Students.delete(req.params.id);
-	res.send("Student with the id " + req.params.id + " successfully deleted!")
-});
-
-
 
 module.exports = router;
