@@ -23,24 +23,24 @@ con.connect(function(err){
 });
 
 
-exports.create = function(firstName, lastName, major) {
+exports.create = function(firstName, lastName, faculty, program, phoneNumber, email, gpa, cgpa, studentId, birthday) {
   var Student = {
     firstName: firstName,
     lastName: lastName,
-    major: major
+    faculty: faculty,
+    program: program,
+    phoneNumber: phoneNumber,
+    email: email,
+    gpa: gpa,
+    cgpa: cgpa,
+    studentId: studentId,
+    birthday: birthday
   }
 
   con.query('INSERT INTO student SET ?', Student, function(err, res){
     if(err) throw err;
     console.log('Last insert ID:', res.insertId); 
     console.log(res);
-
-    con.end(function(err) {
-      // The connection is terminated gracefully
-      // Ensures all previously enqueued queries are still
-      // before sending a COM_QUIT packet to the MySQL server.
-      createConnection();
-    });
   });
 };
 
