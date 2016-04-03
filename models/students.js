@@ -9,7 +9,7 @@ function createConnection() {
       password: 'tarik3656422',
       database: 'sis'
   });
-}
+};
 createConnection();
 
 //connect to database
@@ -42,17 +42,47 @@ exports.create = function(firstName, lastName, faculty, program, phoneNumber, em
   });
 };
 
+exports.getOne = function(id, cb) {
+  con.query('SELECT * FROM Student WHERE ID = ?', id ,function(err, res){
+      if(err) throw err;
+      console.log(res);
+      cb(res);
+  }); 
+};
+
+exports.update = function(firstName, lastName, faculty, program, phoneNumber, email, gpa, cgpa, studentId, birthday, id) {
+  var UpdatedStudent = {
+    FirstName: firstName,
+    LastName: lastName,
+    Faculty: faculty,
+    Program: program,
+    PhoneNumber: phoneNumber,
+    Email: email,
+    GPA: gpa,
+    CGPA: cgpa,
+    StudentId: studentId,
+    Birthday: birthday
+  }
+
+  con.query(
+    'UPDATE Student SET ? WHERE ID = ?', [UpdatedStudent, id] , function(err, res){
+      if(err) throw err;
+      console.log(res);
+  }); 
+};
+
+exports.delete = function(id, cb) {
+  con.query('DELETE FROM Student WHERE ID = ?', id ,function(err, res){
+      if(err) throw err;
+      console.log(res);
+  });
+};
+
 exports.getAll = function(cb) {
    con.query('SELECT * FROM Student', function(err, res){
       if(err) throw err;
       console.log(res);
       cb(res);
   });
-}
+};
 
-exports.delete = function(id) {
-  con.query('DELETE FROM Student WHERE ID = ?', id ,function(err, res){
-      if(err) throw err;
-      console.log(res);
-  });
-}

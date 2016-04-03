@@ -42,3 +42,5 @@ CREATE TABLE Teacher (
 
 
 ALTER TABLE student MODIFY COLUMN StudentID INT auto_increment
+
+UPDATE Student SET FirstName = "Meryem" WHERE ID = 2;
