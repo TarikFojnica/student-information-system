@@ -21,6 +21,7 @@ con.connect(function(err){
   console.log('Connection established');
 });
 
+//Create new student
 exports.create = function(firstName, lastName, faculty, program, phoneNumber, email, gpa, cgpa, studentId, birthday) {
   var Student = {
     FirstName: firstName,
@@ -42,6 +43,7 @@ exports.create = function(firstName, lastName, faculty, program, phoneNumber, em
   });
 };
 
+//Get one student
 exports.getOne = function(id, cb) {
   con.query('SELECT * FROM Student WHERE ID = ?', id ,function(err, res){
       if(err) throw err;
@@ -50,6 +52,7 @@ exports.getOne = function(id, cb) {
   }); 
 };
 
+//Update student
 exports.update = function(firstName, lastName, faculty, program, phoneNumber, email, gpa, cgpa, studentId, birthday, id) {
   var UpdatedStudent = {
     FirstName: firstName,
@@ -71,6 +74,7 @@ exports.update = function(firstName, lastName, faculty, program, phoneNumber, em
   }); 
 };
 
+//Delete student
 exports.delete = function(id, cb) {
   con.query('DELETE FROM Student WHERE ID = ?', id ,function(err, res){
       if(err) throw err;
@@ -78,6 +82,7 @@ exports.delete = function(id, cb) {
   });
 };
 
+//Get all students
 exports.getAll = function(cb) {
    con.query('SELECT * FROM Student', function(err, res){
       if(err) throw err;
