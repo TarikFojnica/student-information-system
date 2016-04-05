@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var Students = require('../models/teachers');
+var Teachers = require('../models/teachers');
 
 router.post('/new', function(req, res) {
 	// Students.create(req.query.firstName, req.query.lastName, req.query.major);
-	Students.create(
+	Teachers.create(
 		req.body.firstName, 
 		req.body.lastName,
 		req.body.phoneNumber,
@@ -17,7 +17,7 @@ router.post('/new', function(req, res) {
 });
 
 router.get('/all', function(req, res) {
-	Students.getAll(function (results) {
+	Teachers.getAll(function (results) {
     	res.json(results);
     });     
 });

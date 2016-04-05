@@ -15,7 +15,7 @@ router.post('/new', function(req, res) {
 		req.body.cgpa,
 		req.body.studentId,
 		req.body.birthday
-		);
+	);
 
 	console.log(req.body);
 	res.json(req.body); 
