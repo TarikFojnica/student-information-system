@@ -22,17 +22,15 @@ con.connect(function(err){
 });
 
 //Create new student
-exports.create = function(firstName, lastName, faculty, program, phoneNumber, email, gpa, cgpa, studentId, birthday) {
+exports.create = function(name, faculty, program, phoneNumber, email, gpa, cgpa, birthday) {
   var Student = {
-    FirstName: firstName,
-    LastName: lastName,
+    Name: name,
     Faculty: faculty,
     Program: program,
     PhoneNumber: phoneNumber,
     Email: email,
     GPA: gpa,
     CGPA: cgpa,
-    StudentId: studentId,
     Birthday: birthday
   }
 
@@ -45,7 +43,7 @@ exports.create = function(firstName, lastName, faculty, program, phoneNumber, em
 
 //Get one student
 exports.getOne = function(id, cb) {
-  con.query('SELECT * FROM Student WHERE ID = ?', id ,function(err, res){
+  con.query('SELECT * FROM Student WHERE ID = ?', id, function(err, res){
       if(err) throw err;
       console.log(res);
       cb(res);
@@ -53,17 +51,15 @@ exports.getOne = function(id, cb) {
 };
 
 //Update student
-exports.update = function(firstName, lastName, faculty, program, phoneNumber, email, gpa, cgpa, studentId, birthday, id) {
+exports.update = function(name, faculty, program, phoneNumber, email, gpa, cgpa, birthday, id) {
   var UpdatedStudent = {
-    FirstName: firstName,
-    LastName: lastName,
+    Name: name,
     Faculty: faculty,
     Program: program,
     PhoneNumber: phoneNumber,
     Email: email,
     GPA: gpa,
     CGPA: cgpa,
-    StudentId: studentId,
     Birthday: birthday
   }
 
