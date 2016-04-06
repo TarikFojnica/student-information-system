@@ -6,7 +6,7 @@ function createConnection() {
     con = mysql.createConnection({
       host: 'localhost',
       user: 'root',
-      password: 'tarik3656422',
+      password: '123',
       database: 'sis'
   });
 }
