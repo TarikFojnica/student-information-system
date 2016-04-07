@@ -4,7 +4,7 @@ var Teachers = require('../models/teachers');
 
 //New student
 router.post('/new', function(req, res) {
-	// Students.create(req.query.firstName, req.query.lastName, req.query.major);
+	
 	Teachers.create(
 		req.body.name,
 		req.body.phoneNumber,
@@ -35,12 +35,13 @@ router.put('/:id' ,function(req, res) {
 	res.json(req.body); 
 });
 
-//Delete student
+//Delete teacher
 router.delete('/:id', function(req, res) {
 	Teachers.delete(req.params.id);
 	res.send("Teacher with the id " + req.params.id + " successfully deleted!")
 });
 
+//Get all teachers
 router.get('/all', function(req, res) {
 	Teachers.getAll(function (results) {
     	res.json(results);
