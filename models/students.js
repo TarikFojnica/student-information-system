@@ -1,15 +1,15 @@
 var mysql = require("mysql");
 
 // Create connection
-var conn;
+var con;
 function createConnection() {
     con = mysql.createConnection({
       host: 'localhost',
       user: 'root',
-      password: '123', 
-      database: 'sis' 
+      password: '123',
+      database: 'sis'
   });
-};
+}
 createConnection();
 
 //connect to database
@@ -32,11 +32,11 @@ exports.create = function(name, faculty, program, phoneNumber, email, gpa, cgpa,
     GPA: gpa,
     CGPA: cgpa,
     Birthday: birthday
-  }
+  };
 
   con.query('INSERT INTO student SET ?', Student, function(err, res){
     if(err) throw err;
-    console.log('Last insert ID:', res.insertId); 
+    console.log('Last insert ID:', res.insertId);
     console.log(res);
   });
 };
@@ -47,7 +47,7 @@ exports.getOne = function(id, cb) {
       if(err) throw err;
       console.log(res);
       cb(res);
-  }); 
+  });
 };
 
 //Update student
@@ -61,13 +61,13 @@ exports.update = function(name, faculty, program, phoneNumber, email, gpa, cgpa,
     GPA: gpa,
     CGPA: cgpa,
     Birthday: birthday
-  }
+  };
 
   con.query(
     'UPDATE Student SET ? WHERE ID = ?', [UpdatedStudent, id] , function(err, res){
       if(err) throw err;
       console.log(res);
-  }); 
+  });
 };
 
 //Delete student

@@ -20,8 +20,6 @@ CREATE TABLE Teacher (
 	ID int AUTO_INCREMENT,
 	PRIMARY KEY (ID)
 );
---TODO Make TeacherID unique
-
 
 -- Create course query
 CREATE TABLE Course (
@@ -33,7 +31,6 @@ CREATE TABLE Course (
 	FOREIGN KEY (TeacherID) REFERENCES Teacher (ID)
 );
 
-
 -- Add new course
 INSERT INTO Course VALUES("Introduction to Programming", "CS101", 1);
 
@@ -42,7 +39,6 @@ ALTER TABLE student MODIFY COLUMN StudentID INT auto_increment
 
 -- Update row in Student table 
 UPDATE Student SET FirstName = "Meryem" WHERE ID = 2;
-
 
 -- Delete from table
 DELETE FROM Course WHERE ID = 1;
