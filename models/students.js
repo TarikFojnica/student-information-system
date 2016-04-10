@@ -12,15 +12,6 @@ function createConnection() {
 }
 createConnection();
 
-//connect to database
-con.connect(function(err){
-    if(err){
-        console.log('Error connecting to Db');
-        return;
-    }
-    console.log('Connection established');
-});
-
 //Create new student
 exports.create = function(name, faculty, program, phoneNumber, email, gpa, cgpa, birthday) {
     var Student = {
@@ -64,10 +55,10 @@ exports.update = function(name, faculty, program, phoneNumber, email, gpa, cgpa,
     };
 
     con.query(
-        'UPDATE Student SET ? WHERE ID = ?', [UpdatedStudent, id] , function(err, res){
-            if(err) throw err;
-            console.log(res);
-        });
+      'UPDATE Student SET ? WHERE ID = ?', [UpdatedStudent, id] , function(err, res){
+          if(err) throw err;
+          console.log(res);
+      });
 };
 
 //Delete student
@@ -87,3 +78,25 @@ exports.getAll = function(cb) {
     });
 };
 
+//Create Student course Registration
+exports.courseRegistration = function(studentId, courseId) {
+    var CourseRegistration = {
+        StudentID: studentId,
+        CourseID: courseId
+    };
+
+    con.query('INSERT INTO CourseRegistration SET ?', CourseRegistration, function(err, res){
+        if(err) throw err;
+        console.log('Last insert ID:', res.insertId);
+        console.log(res);
+    });
+};
+
+//Get all course registrations
+exports.getCourseRegistrations = function(cb) {
+	con.query('SELECT CourseName, CourseCode, Course.ID,  Name, FROM Course, Student, CourseRegistration WHERE CourseRegistration.StudentID = Student.ID AND CourseRegistration.CourseID = Course.ID;', function(err, res){
+		if(err) throw err;
+		console.log(res);
+		cb(res);
+	});
+};

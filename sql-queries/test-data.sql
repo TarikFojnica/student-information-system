@@ -23,13 +23,26 @@ CREATE TABLE Teacher (
 
 -- Create course query
 CREATE TABLE Course (
-	Name varchar(50) NOT NULL,
-	Code varchar(10) NOT NULL,
+	CourseName varchar(50) NOT NULL,
+	CourseCode varchar(10) NOT NULL,
 	ID int AUTO_INCREMENT,
 	TeacherID int,
 	PRIMARY KEY (ID),
 	FOREIGN KEY (TeacherID) REFERENCES Teacher (ID)
 );
+
+-- Create course registration
+CREATE TABLE CourseRegistration (
+	StudentID int,
+	CourseID int,
+	ID int AUTO_INCREMENT,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (StudentID) REFERENCES Student (ID),
+	FOREIGN KEY (CourseID) REFERENCES Course (ID)
+);
+
+-- Create course registration query
+INSERT INTO CourseRegistration VALUES (2, 2);
 
 -- Add new course
 INSERT INTO Course VALUES("Introduction to Programming", "CS101", 1);

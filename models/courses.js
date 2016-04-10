@@ -9,15 +9,15 @@ function createConnection() {
         password: '123',
         database: 'sis'
     });
-};
+}
 createConnection();
 
-exports.create = function(name, code, teacherId) {
+exports.create = function(courseName, courseCode, teacherId) {
     var Course = {
-        Name: name,
-        Code: code,
+        CourseName: courseName,
+        CourseCode: courseCode,
         TeacherID: teacherId
-    }
+    };
 
     con.query('INSERT INTO Course SET ?', Course, function(err, res){
         if(err) throw err;
@@ -28,7 +28,7 @@ exports.create = function(name, code, teacherId) {
 
 //Get all courses
 exports.getAll = function(cb) {
-    con.query('SELECT Name, Code, FirstName, LastName FROM Course, Teacher WHERE Course.TeacherID = Teacher.ID;', function(err, res){
+    con.query('SELECT CourseName, CourseCode, Course.ID,  Name, PhoneNumber FROM Course, Teacher WHERE Course.TeacherID = Teacher.ID;', function(err, res){
         if(err) throw err;
         console.log(res);
         cb(res);

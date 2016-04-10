@@ -19,18 +19,19 @@ router.post('/new', function(req, res) {
 	res.json(req.body); 
 });
 
+
+//Get all students
+router.get('/all', function(req, res) {
+	Students.getAll(function (results) {
+		res.json(results);
+	});
+});
+
 //Get one student
 router.get('/:id', function(req, res) {
 	Students.getOne(req.params.id, function(results) {
 		res.json(results);
 	}); 
-}); 
-
-//Get all students
-router.get('/all', function(req, res) {
-	Students.getAll(function (results) {
-    	res.json(results);
-    });     
 });
 
 //Delete student
@@ -55,8 +56,9 @@ router.put('/:id' ,function(req, res) {
 
 	console.log(req.body);
 	res.json(req.body); 
-})
+});
 
+//Create course registration
 
 
 module.exports = router;
